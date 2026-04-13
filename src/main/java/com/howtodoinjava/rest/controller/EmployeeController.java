@@ -2,6 +2,8 @@ package com.howtodoinjava.rest.controller;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,7 @@ public class EmployeeController
 {
     @Autowired
     private EmployeeDAO employeeDao;
-    
+
     @GetMapping(path="/", produces = "application/json")
     public Employees getEmployees() 
     {
@@ -33,7 +35,7 @@ public class EmployeeController
     public ResponseEntity<Object> addEmployee(
                         @RequestHeader(name = "X-COM-PERSIST", required = true) String headerPersist,
                         @RequestHeader(name = "X-COM-LOCATION", required = false, defaultValue = "ASIA") String headerLocation,
-                        @RequestBody Employee employee) 
+                        @Valid @RequestBody Employee employee) 
                  throws Exception 
     {       
         //Generate resource id (thread-safe) and add resource
