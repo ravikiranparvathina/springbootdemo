@@ -36,11 +36,7 @@ public class EmployeeController
                         @RequestBody Employee employee) 
                  throws Exception 
     {       
-        //Generate resource id
-        Integer id = employeeDao.getAllEmployees().getEmployeeList().size() + 1;
-        employee.setId(id);
-        
-        //add resource
+        //Generate resource id (thread-safe) and add resource
         employeeDao.addEmployee(employee);
         
         //Create resource location
