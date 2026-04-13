@@ -1,5 +1,9 @@
 package com.howtodoinjava.rest.model;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class Employee {
 
     public Employee() {
@@ -15,8 +19,17 @@ public class Employee {
     }
  
     private Integer id;
+
+    @NotBlank(message = "First name is required")
+    @Size(min = 1, max = 100, message = "First name must be between 1 and 100 characters")
     private String firstName;
+
+    @NotBlank(message = "Last name is required")
+    @Size(min = 1, max = 100, message = "Last name must be between 1 and 100 characters")
     private String lastName;
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email must be a valid email address")
     private String email;
 
     public Integer getId() {
